@@ -119,6 +119,8 @@ INSERT INTO "OFFICER" ("id", "name")
 VALUES ('987002', 'Parto Sumardi')
 INSERT INTO "OFFICER" ("id", "name")
 VALUES ('987003', 'Sastro Amidjojo')
+INSERT INTO "OFFICER" ("id", "name")
+VALUES ('987004', 'Bambang Nugroho')
 
 -- Mengisi tabel bookshelf
 INSERT INTO "BOOKSHELF" ("id")
