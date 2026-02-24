@@ -1,7 +1,6 @@
 ```mermaid
     erDiagram
         BOOK }o--|| BOOKSHELF : at
-        BOOK }o--o| BORROWER : borrowed
         BOOK {
             int id pk
             string title
@@ -16,18 +15,31 @@
         }
 
 
+        BOOK }o--o| BORROWED_BOOK : borrowed
+        BORROWED_BOOK {
+            int book_id pk, fk
+            int borrower_id pk, fk
+        }
+
+        OFFICER_BOOK ||--o{ BORROWED_BOOK : borrowing
+        OFFICER_BOOK {
+            int book_id pk, fk
+            int officer_id pk, fk
+        }
+
         BOOKSHELF {
             int id pk
             int book_id fk
         }
 
-        OFFICER ||--o{ BOOK : borrowing
+        OFFICER ||--o{ OFFICER_BOOK : borrowing
         OFFICER {
             int id pk
             string name
             id book_id fk
         }
 
+        BORROWER ||--o{ BORROWED_BOOK : borrow
         BORROWER {
             int id pk
             string name
