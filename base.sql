@@ -27,12 +27,26 @@ CREATE TABLE "BORROWER" (
     "borrower_name" VARCHAR(120)
 );
 
+CREATE TABLE book_category (
+    id INTEGER PRIMARY KEY,
+    book_id INTEGER,
+    category_id INTEGER,
+    -- membuat foreign key langsung
+    CONSTRAINT fk_book
+        FOREIGN KEY (book_id)
+        REFERENCES "BOOK"(id),
+    CONSTRAINT fk_category
+        FOREIGN KEY (category_id)
+        REFERENCES "CATEGORY"(id)
+);
+
 -- Melihat isian tabel
 SELECT * FROM "BOOK";
 SELECT * FROM "BOOKSHELF";
 SELECT * FROM "CATEGORY";
 SELECT * FROM "OFFICER";
 SELECT * FROM "BORROWER";
+SELECT * FROM book_category;
 
 -- Menambahkan properti (foreign key) ke tabel BOOK
 ALTER TABLE "BOOK"
