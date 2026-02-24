@@ -159,7 +159,17 @@ VALUES
 
 -- Mengisi tabel category
 INSERT INTO "CATEGORY" ("category_name")
-VALUES ('leadership');
+-- VALUES ('leadership');
+VALUES ('fiction'),
+       ('non-fiction'),
+       ('science'),
+       ('technology'),
+       ('history'),
+       ('biography'),
+       ('self-development'),
+       ('religion'),
+       ('business'),
+       ('education');
 
 -- Mengisi tabel borrower
 INSERT INTO "BORROWER" ("id", "borrower_name")
@@ -192,7 +202,33 @@ INSERT INTO "OFFICER" ("id", "name")
 VALUES ('987003', 'Sastro Amidjojo')
 INSERT INTO "OFFICER" ("id", "name")
 VALUES ('987004', 'Bambang Nugroho')
+INSERT INTO "OFFICER" ("id", "name")
+VALUES ('987005', 'Siti Wulandari'),
+       ('987006', 'Agus Setiawan'),
+       ('987007', 'Rina Kartika'),
+       ('987008', 'Dedi Pratama'),
+       ('987009', 'Lestari Handayani'),
+       ('987010', 'Hendra Saputra');
 
 -- Mengisi tabel bookshelf
 INSERT INTO "BOOKSHELF" ("id")
-VALUES ('B-04')
+-- VALUES ('B-04')
+VALUES ('A-01'),
+       ('A-02'),
+       ('A-03'),
+       ('A-04'),
+       ('A-05'),
+       ('B-01'),
+       ('B-02'),
+       ('B-03'),
+       ('B-05'),
+       ('C-01'),
+       ('C-02'),
+       ('C-03'),
+       ('C-04'),
+       ('C-05'),
+       ('D-01'),
+       ('D-02'),
+       ('D-03'),
+       ('D-04'),
+       ('D-05');
