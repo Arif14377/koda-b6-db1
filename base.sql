@@ -64,6 +64,7 @@ SELECT * FROM "CATEGORY";
 SELECT * FROM "OFFICER";
 SELECT * FROM "BORROWER";
 SELECT * FROM book_category;
+SELECT * FROM borrowed_book;
 
 -- Menambahkan properti (foreign key) ke tabel BOOK
 ALTER TABLE "BOOK"
@@ -134,10 +135,25 @@ drop column officer_id cascade;
 -- Mengisi data ke column table BOOK
 -- Salah tipe data kolom publisher, ubah ke varchar
 ALTER TABLE "BOOK"
-ALTER COLUMN "publisher" TYPE VARCHAR(100)
+ALTER COLUMN "publisher" TYPE VARCHAR(100);
 
-INSERT INTO "BOOK" ("book_title", "author", "year", "publisher", "city", "bookshelf_id", "category_id", "borrower_id", "officer_id")
-VALUES ('The Psycholgy of Leadership', 'Sebastian Page', 2025, 'Penerbit Baca', 'Tangerang Selatan', 'B-04', 1, 678001, 987003);
+ALTER TABLE "BOOK"
+ALTER COLUMN "book_title" TYPE VARCHAR(120);
+
+-- ('The Psycholgy of Leadership', 'Sebastian Page', 2025, 'Penerbit Baca', 'Tangerang Selatan', 'B-04', 1, 678001, 987003);
+INSERT INTO "BOOK" ("book_title", "author", "year", "publisher", "city")
+VALUES
+('The Psycholgy of Leadership', 'Sebastian Page', 2025, 'Penerbit Baca', 'Tangerang Selatan'),
+('Laskar Pelangi', 'Andrea Hirata', 2005, 'Bentang Pustaka', 'Yogyakarta'),
+('Bumi Manusia', 'Pramoedya Ananta Toer', 1980, 'Hasta Mitra', 'Jakarta'),
+('Negeri 5 Menara', 'Ahmad Fuadi', 2009, 'Gramedia Pustaka Utama', 'Jakarta'),
+('Ayat-Ayat Cinta', 'Habiburrahman El Shirazy', 2004, 'Republika', 'Jakarta'),
+('Perahu Kertas', 'Dee Lestari', 2009, 'Bentang Pustaka', 'Yogyakarta'),
+('Dilan 1990', 'Pidi Baiq', 2014, 'Pastel Books', 'Bandung'),
+('Ronggeng Dukuh Paruk', 'Ahmad Tohari', 1982, 'Gramedia Pustaka Utama', 'Jakarta'),
+('Cantik Itu Luka', 'Eka Kurniawan', 2002, 'Gramedia Pustaka Utama', 'Jakarta'),
+('Supernova: Ksatria, Puteri, dan Bintang Jatuh', 'Dee Lestari', 2001, 'Truedee Books', 'Jakarta'),
+('5 cm', 'Donny Dhirgantoro', 2005, 'Grasindo', 'Jakarta');
 
 -- akhir //TODO
 
