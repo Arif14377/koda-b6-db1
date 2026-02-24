@@ -17,8 +17,9 @@
 
         BOOK }o--o| BORROWED_BOOK : borrowed
         BORROWED_BOOK {
-            int book_id pk, fk
-            int borrower_id pk, fk
+            int book_id fk
+            int borrower_id fk
+            int officer_id fk
         }
 
         OFFICER_BOOK ||--o{ BORROWED_BOOK : borrowing

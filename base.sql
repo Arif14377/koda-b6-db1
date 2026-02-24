@@ -40,6 +40,23 @@ CREATE TABLE book_category (
         REFERENCES "CATEGORY"(id)
 );
 
+create table borrowed_book (
+    id INTEGER primary key,
+    book_id INTEGER,
+    borrower_id INTEGER,
+    officer_id INTEGER,
+
+    CONSTRAINT fk_book
+        FOREIGN KEY (book_id)
+        REFERENCES "BOOK"(id),
+    CONSTRAINT fk_borrower
+        FOREIGN KEY (borrower_id)
+        REFERENCES "BORROWER"(id),
+    CONSTRAINT fk_officer
+        foreign key (officer_id)
+        references "OFFICER" (id)
+);
+
 -- Melihat isian tabel
 SELECT * FROM "BOOK";
 SELECT * FROM "BOOKSHELF";
@@ -63,6 +80,18 @@ FOREIGN KEY ("bookshelf_id")
 REFERENCES "BOOKSHELF" ("id")
 ON DELETE SET NULL;
 
+-- hapus fk_bookshelf (pindah ke table BOOKSHELF)
+alter table "BOOK"
+drop column bookshelf_id cascade;
+
+alter table "BOOKSHELF"
+add column "book_id" int;
+
+alter table "BOOKSHELF"
+add constraint fk_book
+    foreign key ("book_id")
+    references "BOOK" (id);
+
 ALTER TABLE "BOOK"
 ADD COLUMN "category_id" SERIAL
 
@@ -72,6 +101,10 @@ FOREIGN KEY ("category_id")
 REFERENCES "CATEGORY" ("id")
 ON DELETE SET NULL;
 
+-- delete column fk category_id
+alter table "BOOK"
+drop column category_id cascade;
+
 ALTER TABLE "BOOK"
 ADD COLUMN "borrower_id" INTEGER
 
@@ -79,6 +112,10 @@ ALTER TABLE "BOOK"
 ADD CONSTRAINT fk_borrower
 FOREIGN KEY ("borrower_id")
 REFERENCES "BORROWER" ("id");
+
+-- delete fk borrower_id
+alter table "BOOK"
+drop column borrower_id cascade;
 
 ALTER TABLE "BOOK"
 ADD COLUMN "officer_id" INTEGER
@@ -88,6 +125,10 @@ ADD CONSTRAINT fk_officer
 FOREIGN KEY ("officer_id")
 REFERENCES "OFFICER" ("id")
 ON DELETE SET NULL;
+
+-- delete fk officer_id
+alter table "BOOK"
+drop column officer_id cascade;
 
 -- //TODO: (perlu membuat value tabel lain)
 -- Mengisi data ke column table BOOK
