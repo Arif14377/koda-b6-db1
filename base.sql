@@ -8,6 +8,9 @@ CREATE TABLE "BOOK" (
     "city" VARCHAR(50)
 );
 
+-- HAPUS tabel dulu (reset)
+drop table "BOOKSHELF" cascade;
+
 CREATE TABLE "BOOKSHELF" (
     "id" VARCHAR(5) PRIMARY KEY
 );
@@ -27,8 +30,10 @@ CREATE TABLE "BORROWER" (
     "borrower_name" VARCHAR(120)
 );
 
+drop table book_category cascade;
+
 CREATE TABLE book_category (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     book_id INTEGER,
     category_id INTEGER,
     -- membuat foreign key langsung
@@ -40,8 +45,18 @@ CREATE TABLE book_category (
         REFERENCES "CATEGORY"(id)
 );
 
+-- hapus kolom id pada table book_category
+alter table book_category
+drop column id;
+-- menambahkan kolom id dengan serial
+alter table book_category
+add column id SERIAL primary key;
+
+-- hapus table borrowed_book
+drop table borrowed_book cascade;
+
 create table borrowed_book (
-    id INTEGER primary key,
+    id SERIAL primary key,
     book_id INTEGER,
     borrower_id INTEGER,
     officer_id INTEGER,
@@ -88,6 +103,7 @@ drop column bookshelf_id cascade;
 alter table "BOOKSHELF"
 add column "book_id" int;
 
+-- TODO run
 alter table "BOOKSHELF"
 add constraint fk_book
     foreign key ("book_id")
@@ -211,24 +227,61 @@ VALUES ('987005', 'Siti Wulandari'),
        ('987010', 'Hendra Saputra');
 
 -- Mengisi tabel bookshelf
-INSERT INTO "BOOKSHELF" ("id")
+INSERT INTO "BOOKSHELF" ("id", "book_id")
 -- VALUES ('B-04')
-VALUES ('A-01'),
-       ('A-02'),
-       ('A-03'),
-       ('A-04'),
-       ('A-05'),
-       ('B-01'),
-       ('B-02'),
-       ('B-03'),
-       ('B-05'),
-       ('C-01'),
-       ('C-02'),
-       ('C-03'),
-       ('C-04'),
-       ('C-05'),
-       ('D-01'),
-       ('D-02'),
-       ('D-03'),
-       ('D-04'),
-       ('D-05');
+VALUES ('A-01', 2),
+       ('A-02', 3),
+       ('A-03', NULL),
+       ('A-04', 6),
+       ('A-05', 8),
+       ('B-01', 11),
+       ('B-02', NULL),
+       ('B-03', 9),
+       ('B-05', NULL),
+       ('C-01', 4),
+       ('C-02', 3),
+       ('C-03', 2),
+       ('C-04', NULL),
+       ('C-05', 7),
+       ('D-01', NULL),
+       ('D-02', 5),
+       ('D-03', NULL),
+       ('D-04', NULL),
+       ('D-05', 10);
+
+-- mengisi tabel book_category
+insert into book_category("book_id", "category_id")
+values
+(5, 4),
+(4, 8),
+(5, 2),
+(5, 7),
+(3, 3),
+(2, 4),
+(10, 6),
+(7, 5),
+(3, 2),
+(6, 1);
+
+INSERT INTO borrowed_book (book_id, borrower_id, officer_id)
+VALUES
+(3, 678002, 987004),
+(7, 678005, 987001),
+(3, 678010, 987003),
+(12, 678001, 987006),
+(5, 678008, 987002),
+(9, 678003, 987009),
+(4, 678007, 987005),
+(11, 678006, 987010),
+(2, 678004, 987008),
+(13, 678009, 987007),
+(6, 678002, 987003),
+(8, 678005, 987004),
+(10, 678001, 987002),
+(3, 678006, 987009),
+(7, 678008, 987001),
+(2, 678003, 987006),
+(12, 678010, 987005),
+(5, 678004, 987007),
+(9, 678007, 987008),
+(4, 678009, 987010);
