@@ -46,10 +46,16 @@
             int book_id fk
         }
 
-        CATEGORY }|--o{ BOOK : has
+        CATEGORY }|--o{ BOOK_CATEGORY : has
         CATEGORY {
             int id pk
             string category_name
             int book_id fk
+        }
+
+        BOOK_CATEGORY }|--o{ BOOK : has
+        BOOK_CATEGORY {
+            int book_id pk, fk
+            int category_id pk, fk
         }
 ```
